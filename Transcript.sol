@@ -2,7 +2,6 @@ pragma solidity ^0.5.0;
 
 contract transcriptVerification {
     address owner;
-    uint256 transcriptCount = 0;
     
     bytes32[] transcriptHash;
 
@@ -19,14 +18,18 @@ contract transcriptVerification {
         require(transcriptHash[_transcriptID] == _transcriptHash, "Transcript not authentic");
         _;
     }
+    
+    modifier onlyValidId(uint256 _transcriptID) {
+        require(transcriptHash.length > _transcriptID, "Invalid ID");
+        _;
+    }
 
     function addTranscript(bytes32 _transcriptHash) public onlyOwner returns(uint256){
-        transcriptCount++;
-        transcriptHash[transcriptCount] = _transcriptHash;
-        return transcriptCount;
+        transcriptHash.push(_transcriptHash);
+        log0(bytes32(transcriptHash.length));
     }
 
-    function isTranscriptAuthentic(uint256 _transcriptID, bytes32 _transcriptHash) public view onlyAuthentic(_transcriptID, _transcriptHash) returns(bool) {
+    function isTranscriptAuthentic(uint256 _transcriptID, bytes32 _transcriptHash) public view onlyValidId(_transcriptID) onlyAuthentic(_transcriptID, _transcriptHash) returns(bool) {
         return true;
     }
-}
+ }
