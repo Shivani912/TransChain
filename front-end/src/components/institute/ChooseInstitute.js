@@ -3,17 +3,6 @@ import { Link } from 'react-router-dom'
 
 class ChooseInstitute extends Component
 {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         ins_id: '', 
-    //         ins_addr: ''
-    //     };
-
-    //     // this.handleChange = this.handleChange.bind(this);
-        
-    //     // this.handleSubmit = this.handleSubmit.bind(this);
-    // }
     state = {
         ins_id: '', 
         ins_addr: ''
@@ -42,12 +31,12 @@ class ChooseInstitute extends Component
                         <label htmlFor="ins_id">Institute ID</label>
                     </div>
 
-                    <div className="input-field">
+                    {/* <div className="input-field">
                         <input id="ins_addr" type="text" className="validate" onChange={this.handleChange}/>
                         <label htmlFor="ins_addr">Address</label>
-                    </div>
+                    </div> */}
 
-                    <Link to="/InstituteDetails/:id">
+                    <Link to={'/instituteDetails/' + this.state.ins_id}>
                         <div className="input-field">
                             <button className="btn waves-effect waves-light" type="submit" name="action">Log In
                                 <i className="material-icons right">send</i>

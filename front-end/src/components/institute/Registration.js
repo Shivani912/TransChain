@@ -1,12 +1,15 @@
 import React, { Component } from 'react' 
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { registration } from '../../store/actions/registrationActions'
 
 class Registration extends Component {
     
     state = {
         ins_name: '', 
         ins_acc_address: '',
-        ins_pk: ''
+        ins_pk: '',
+        ins_contract_addr: ''
     };
 
     handleChange = (event) => {
@@ -17,7 +20,9 @@ class Registration extends Component {
     
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state)
+        this.props.registration(this.state);
+        // console.log("State after registration")
+        // console.log(this.state)
     }
 
     render() {
@@ -37,21 +42,26 @@ class Registration extends Component {
 
                     <div className="input-field"> 
                         <input id="ins_pk" type="text" className="validate" onChange={this.handleChange}/>
-                        <label htmlFor="ins_pk">Metamask Address</label>
+                        <label htmlFor="ins_pk">Institute PK</label>
                     </div>
 
-                    <Link to="/InstituteDetails/:id">
+                    {/* <Link to="/instituteDetails/:id"> */}
                         <div className="input-field">
                             <button className="btn waves-effect waves-light" type="submit" name="action">Register
                                 <i className="material-icons right">send</i>
                             </button>
                         </div>
-                    </Link>
+                    {/* </Link> */}
                 </form>
             </div>
             
         )
     }
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        registration: (newInstitute) => dispatch(registration(newInstitute))
+    }
+}
 
-export default Registration
+export default connect(null, mapDispatchToProps)(Registration)

@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Navbar from './components/navbar/Navbar'
 import Institute from './components/institute/Institute'
 import InstituteDetails from './components/institute/InstituteDetails'
+import TranscriptDetails from './components/institute/TranscriptDetails'
 
 function App() {
   return (
@@ -10,8 +11,9 @@ function App() {
       <div className="App">
         <Navbar/>
         <Switch>
-          <Route path='/Institute' component={Institute} />
-          <Route path='/InstituteDetails/:id' component={InstituteDetails} />
+          <Route path='/institute' component={Institute} />
+          <Route path='/instituteDetails/:id' component={InstituteDetails} />
+          <Route path='/transcript/:id' component={TranscriptDetails} />
         </Switch>
       </div>
     </BrowserRouter>
