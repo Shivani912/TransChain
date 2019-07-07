@@ -8,7 +8,8 @@ class Registration extends Component {
     state = {
         ins_name: '', 
         ins_acc_address: '',
-        ins_pk: ''
+        ins_pk: '',
+        ins_contract_addr: ''
     };
 
     handleChange = (event) => {

@@ -17,6 +17,7 @@ const InstituteDetails = (props) => {
                         <span className="card-text">Institute Name - {newInstitute.ins_name} </span><br/>
                         <span className="card-text">Institute Address - {newInstitute.ins_acc_address} </span><br/>
                         <span className="card-text">Institute PK - {newInstitute.ins_pk} </span><br/>
+                        <span className="card-text">Institute SmartContract Address - {newInstitute.ins_contract_addr} </span><br/>
                     </div>
                 </div>
             </div>
