@@ -10,7 +10,16 @@ const initState = {
 }
 
 const transcriptReducer = (state = initState,action) => {
-    return state;
+    switch(action.type){
+        case 'ADD_TRANSCRIPT':
+            console.log("Added Transcript", action.transcript);
+            return state;
+        case 'ADD_TRANSCRIPT_ERROR':
+            console.log("Error Adding Transcript", action.err);
+            return state;
+        default:
+            return state;
+    }
 }
 
 export default transcriptReducer

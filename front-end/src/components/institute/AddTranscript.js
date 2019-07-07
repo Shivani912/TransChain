@@ -1,4 +1,6 @@
-import React, { Component } from 'react' 
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addTranscript } from '../../store/actions/transcriptActions'
 
 class AddTranscript extends Component {
     constructor(props){
@@ -17,11 +19,13 @@ class AddTranscript extends Component {
     }
     
     handleSubmit(event) {
-        console.log(this.state);
-        alert('Transcript Added: \n transcriptID: '+ this.state.transcriptID + ' transcriptDate: '+ this.state.transcriptDate + 
-        '\n studentID: '+ this.state.studentID + ' studentName: '+ this.state.studentName +
-        '\n programName: '+ this.state.programName + ' marksDetails: '+ this.state.marksDetails)
         event.preventDefault();
+        this.props.addTranscript(this.state);
+
+        // console.log(this.state);
+        // alert('Transcript Added: \n transcriptID: '+ this.state.transcriptID + ' transcriptDate: '+ this.state.transcriptDate + 
+        // '\n studentID: '+ this.state.studentID + ' studentName: '+ this.state.studentName +
+        // '\n programName: '+ this.state.programName + ' marksDetails: '+ this.state.marksDetails)
     }
 
     render() {
@@ -70,4 +74,10 @@ class AddTranscript extends Component {
     }
 }
 
-export default AddTranscript
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addTranscript: (transcript) => dispatch(addTranscript(transcript))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(AddTranscript)

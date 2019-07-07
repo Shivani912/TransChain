@@ -9,7 +9,7 @@ class Institute extends Component {
     render() {
         // console.log(this.props)
         const {transcripts} = this.props;
-        console.log(transcripts);
+        // console.log(transcripts);
 
         return (
             <div className="dashboard container">

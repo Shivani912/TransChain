@@ -2,7 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 
-const firebaseConfig = {
+const config = {
     apiKey: "AIzaSyCRigIXLDkPY6L2cvVwqqEtNq-ZAERN5Dg",
     authDomain: "transchain-gbc.firebaseapp.com",
     databaseURL: "https://transchain-gbc.firebaseio.com",
@@ -11,7 +11,7 @@ const firebaseConfig = {
     messagingSenderId: "789734830513",
     appId: "1:789734830513:web:0707f9e148ecce99"
   };
-  firebaseConfig.initializeApp(firebaseConfig);
+  firebase.initializeApp(config);
   firebase.firestore().settings({ timestampsInSnapshots : true});
 
   export default firebase;
