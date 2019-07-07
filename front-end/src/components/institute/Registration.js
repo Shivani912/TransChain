@@ -34,13 +34,13 @@ class Registration extends Component {
                         <label htmlFor="ins_acc_address">Metamask Address</label>
                     </div>
 
-                    {/* <Link to="/InstituteDetails/:id"> */}
+                    <Link to="/InstituteDetails/:id">
                         <div className="input-field">
                             <button className="btn waves-effect waves-light" type="submit" name="action">Register
                                 <i className="material-icons right">send</i>
                             </button>
                         </div>
-                    {/* </Link> */}
+                    </Link>
                 </form>
             </div>
             
