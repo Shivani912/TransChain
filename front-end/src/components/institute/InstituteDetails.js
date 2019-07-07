@@ -2,22 +2,36 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import AddTranscript from './AddTranscript'
+import ShowTranscripts from './ShowTranscripts'
 
 
 const InstituteDetails = (props) => {
     const {newInstitute} = props;
-    console.log(newInstitute)
+    const {transcripts} = props;
+
+    // console.log(newInstitute)
 
     if (newInstitute){
         return(
-            <div className="container section">
-                <div className="card z-depth-0">
-                    <div className="card-content grey-text text-darken-3">
-                        <span className="card-title">Institute Id - {newInstitute.ins_acc_address}</span>
-                        <span className="card-text">Institute Name - {newInstitute.ins_name} </span><br/>
-                        <span className="card-text">Institute Address - {newInstitute.ins_acc_address} </span><br/>
-                        <span className="card-text">Institute PK - {newInstitute.ins_pk} </span><br/>
-                        <span className="card-text">Institute SmartContract Address - {newInstitute.ins_contract_addr} </span><br/>
+            <div className="dashboard container">
+                <div className="row">
+                    <div className="card z-depth-0">
+                        <div className="card-content grey-text text-darken-3">
+                            <span className="card-title">Institute Id - {newInstitute.ins_acc_address}</span>
+                            <span className="card-text">Institute Name - {newInstitute.ins_name} </span><br/>
+                            <span className="card-text">Institute Address - {newInstitute.ins_acc_address} </span><br/>
+                            <span className="card-text">Institute PK - {newInstitute.ins_pk} </span><br/>
+                            <span className="card-text">Institute SmartContract Address - {newInstitute.ins_contract_addr} </span><br/>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col s12 m6">
+                        <AddTranscript/>
+                    </div>
+                    <div className="col s12 m6">
+                        <ShowTranscripts transcripts={transcripts} />
                     </div>
                 </div>
             </div>
@@ -39,14 +53,16 @@ const mapStateToProps = (state,ownProps)=>{
     const newInstitute = institutions ? institutions[id] : null
     // console.log(newInstitute)
     return{
-        newInstitute: newInstitute
+        newInstitute: newInstitute,
+        transcripts: state.firestore.ordered.transcripts
     }
 }
 
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'institutions' }
+        { collection: 'institutions' },
+        { collection: 'transcripts' }
     ])
 )(InstituteDetails)
 
