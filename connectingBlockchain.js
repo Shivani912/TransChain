@@ -32,16 +32,17 @@ async function addTranscript(JSONObj){
         let txWait = await tx.wait()
         let transcriptIDHex = txWait.logs[0].data.toString()
         // console.log(parseInt(transcriptID))
-        let transcriptIDNum = parseInt(transcriptID) - 1
+        let transcriptIDNum = parseInt(transcriptIDHex) - 1
         return transcriptIDNum
     }
     catch(err) {
-        console.log(err)
+        // console.log(err)
+        return err.message
     }
     
 }
 
-async function verifyTranscript(JSONObj) {
+async function verifyTranscript(JSONObj, id) {
     try{
 
         let string = JSON.stringify(JSONObj)
@@ -50,17 +51,20 @@ async function verifyTranscript(JSONObj) {
 
         let hashedData = ethers.utils.keccak256(hex)
 
-        let tx = await contractWithSigner.isTranscriptAuthentic(20, hashedData)
+        let tx = await contractWithSigner.isTranscriptAuthentic(id, hashedData)
         // console.log(typeof(tx))
-        console.log(tx)
+        // console.log(tx)
+        return tx
     }
     catch(err) {
         
         if(err.reason){
             if(err.reason.toString() == "Invalid ID")
-                console.log("bad ID")
+                // console.log("bad ID")
+                return "bad ID"
             if(err.reason.toString() == "Transcript not authentic")
-                console.log("bad transcript")
+                // console.log("bad transcript")
+                return "bad transcript"
         }
         else {
             console.log(err)
