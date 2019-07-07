@@ -8,6 +8,7 @@ export const registration = (newInstitute) =>{
             // instituteAddress: 0x12345,
             createdAt: new Date()
         }).then((docRef) => {
+            alert("Institute Added with ID: " + docRef.id);
             console.log("Institute Added with ID: ", docRef.id);
             dispatch({type:'ADD_INSTITUTE',newInstitute:newInstitute});
             // window.location.href('/instituteDetails/' + docRef.id)

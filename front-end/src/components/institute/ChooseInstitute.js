@@ -31,10 +31,10 @@ class ChooseInstitute extends Component
                         <label htmlFor="ins_id">Institute ID</label>
                     </div>
 
-                    <div className="input-field">
+                    {/* <div className="input-field">
                         <input id="ins_addr" type="text" className="validate" onChange={this.handleChange}/>
                         <label htmlFor="ins_addr">Address</label>
-                    </div>
+                    </div> */}
 
                     <Link to={'/instituteDetails/' + this.state.ins_id}>
                         <div className="input-field">
