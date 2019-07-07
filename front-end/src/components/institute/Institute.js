@@ -8,10 +8,10 @@ class Institute extends Component {
         return (
             <div className="dashboard container">
                 <div className="row">
-                    <div className="col s12 m5">
+                    <div className="col s12 m6">
                         <Registration/>
                     </div>
-                    <div className="col s12 m5 offset-m2">
+                    <div className="col s12 m6">
                         <ChooseInstitute/>
                     </div>
                 </div>

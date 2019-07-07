@@ -1,47 +1,49 @@
 import React, { Component } from 'react' 
+import { Link } from 'react-router-dom'
 
 class Registration extends Component {
-    constructor(props){
-        super(props);
-        this.state = {ins_name: '', ins_acc_address: ''};
+    
+    state = {
+        ins_name: '', 
+        ins_acc_address: ''
+    };
 
-        this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleAddressChange = this.handleAddressChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleNameChange(event) {
-        this.setState({ins_name: event.target.value});
+    handleChange = (event) => {
+        this.setState({
+            [event.target.id]: event.target.value
+        });
     }
     
-    handleAddressChange(event) {
-        this.setState({ins_acc_address: event.target.value});
-    }
-
-    handleSubmit(event) {
-        alert('data submitted: \n name: '+ this.state.ins_name + ' address: '+ this.state.ins_acc_address)
+    handleSubmit = (event) => {
         event.preventDefault();
+        console.log(this.state)
     }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} >
-                <h3> Want to join us ?</h3>
-                <div className="input-field">
-                    <input id="I_name" type="text" className="validate" onChange={this.handleNameChange}/>
-                    <label htmlFor="I_name">Institute Name</label>
-                </div>
-                
-                <div className="input-field"> 
-                    <input id="I_addr" type="text" className="validate" onChange={this.handleAddressChange}/>
-                    <label htmlFor="I_addr">Metamask Address</label>
-                </div>
+            <div className="container">
+                <form onSubmit={this.handleSubmit} >
+                    <h4 className="grey-text text-darken-3"> Want to join us ?</h4>
+                    <div className="input-field">
+                        <input id="ins_name" type="text" className="validate" onChange={this.handleChange}/>
+                        <label htmlFor="ins_name">Institute Name</label>
+                    </div>
+                    
+                    <div className="input-field"> 
+                        <input id="ins_acc_address" type="text" className="validate" onChange={this.handleChange}/>
+                        <label htmlFor="ins_acc_address">Metamask Address</label>
+                    </div>
 
-                <button className="btn waves-effect waves-light" type="submit" name="action">Register
-                    <i className="material-icons right">send</i>
-                </button>
-
-            </form>
+                    {/* <Link to="/InstituteDetails/:id"> */}
+                        <div className="input-field">
+                            <button className="btn waves-effect waves-light" type="submit" name="action">Register
+                                <i className="material-icons right">send</i>
+                            </button>
+                        </div>
+                    {/* </Link> */}
+                </form>
+            </div>
+            
         )
     }
 }
