@@ -5,7 +5,8 @@ class Registration extends Component {
     
     state = {
         ins_name: '', 
-        ins_acc_address: ''
+        ins_acc_address: '',
+        ins_pk: ''
     };
 
     handleChange = (event) => {
@@ -32,6 +33,11 @@ class Registration extends Component {
                     <div className="input-field"> 
                         <input id="ins_acc_address" type="text" className="validate" onChange={this.handleChange}/>
                         <label htmlFor="ins_acc_address">Metamask Address</label>
+                    </div>
+
+                    <div className="input-field"> 
+                        <input id="ins_pk" type="text" className="validate" onChange={this.handleChange}/>
+                        <label htmlFor="ins_pk">Metamask Address</label>
                     </div>
 
                     <Link to="/InstituteDetails/:id">
