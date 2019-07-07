@@ -1,12 +1,15 @@
 import React from 'react' 
-import TranscriptDetails from './TranscriptDetails'
+import TranscriptSummary from './TranscriptSummary'
+import { Link } from 'react-router-dom'
 
 const ShowTranscripts = ({transcripts}) => {
     return(
         <div>
             {transcripts && transcripts.map(transcript =>{
                 return(
-                    <TranscriptDetails transcript={transcript} key={transcript.id} />
+                    <Link to={'/transcript/' + transcript.id} key={transcript.id} >
+                    <TranscriptSummary transcript={transcript} key={transcript.id} />
+                    </Link>
                 )
             })}
         </div>

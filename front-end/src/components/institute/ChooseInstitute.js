@@ -36,7 +36,7 @@ class ChooseInstitute extends Component
                         <label htmlFor="ins_addr">Address</label>
                     </div>
 
-                    <Link to="/InstituteDetails/:id">
+                    <Link to={'/instituteDetails/' + this.state.ins_id}>
                         <div className="input-field">
                             <button className="btn waves-effect waves-light" type="submit" name="action">Log In
                                 <i className="material-icons right">send</i>

@@ -66,3 +66,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Issues resolved during development
+https://stackoverflow.com/questions/53656082/react-redux-firebase-error-using-firestoreconnect-typeerror-undefined-is-not-a
