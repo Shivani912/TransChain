@@ -18,7 +18,8 @@ const TranscriptDetails = (props) => {
                         <span className="card-text">Student Id - {transcript.studentID} </span><br/>
                         <span className="card-text">Student Name - {transcript.studentName} </span><br/>
                         <span className="card-text">Program Name - {transcript.programName} </span><br/>
-                        <span className="card-text">Details of Marks - {transcript.marksDetails} </span>
+                        <span className="card-text">Details of Marks - {transcript.marksDetails} </span><br/>
+                        <span className="card-text">Certified by Institution - {transcript.instituteId} </span>
                     </div>
                 </div>
             </div>

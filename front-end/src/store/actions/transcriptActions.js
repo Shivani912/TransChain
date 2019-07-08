@@ -4,8 +4,6 @@ export const addTranscript = (transcript) =>{
         const firestore = getFirestore();
         firestore.collection('transcripts').add({
             ...transcript,
-            instituteId: 12345,
-            instituteAddress: 0x12345,
             createdAt: new Date()
         }).then((docRef) => {
             console.log("Transcript written with ID: ", docRef.id);

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import Registration from './Registration'
 import ChooseInstitute from './ChooseInstitute'
-import AddTranscript from './AddTranscript'
-import ShowTranscripts from './ShowTranscripts'
+import ShowAllTranscripts from './ShowAllTranscripts'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -24,11 +23,11 @@ class Institute extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col s12 m6">
+                    {/* <div className="col s12 m6">
                         <AddTranscript/>
-                    </div>
+                    </div> */}
                     <div className="col s12 m6">
-                        <ShowTranscripts transcripts={transcripts} />
+                        <ShowAllTranscripts transcripts={transcripts} />
                     </div>
                 </div>
             </div>        
