@@ -2,6 +2,7 @@ const ethers = require('ethers')
 var fs  = require('fs');
 
 const abi = JSON.parse(fs.readFileSync('Transcript_sol_transcriptVerification.abi').toString())
+const bytecode = JSON.parse(fs.readFileSync('Transcript_sol_transcriptVerification.bin').toString())
 
 const provider = ethers.getDefaultProvider('ropsten')
 
@@ -10,6 +11,17 @@ let privateKey
 let contract
 let wallet
 let contractWithSigner
+
+// async function register(pk) {
+//     wallet = new ethers.Wallet(pk, provider)
+//     let factory = new ethers.ContractFactory(abi, bytecode, wallet)
+//     let contract = await factory.deploy()
+//     contractAddress = contract.address
+//     await contract.deployed()
+//     console.log(contractAddress)
+//     // return contractAddress
+// }
+// register('0xD8A0B1144A27811ECF01841B323255B510AF23A7AD31B155E898F10BADAC017D')
 
 function login(contractAddr, pk) {
     contractAddress = contractAddr
@@ -72,6 +84,6 @@ async function verifyTranscript(JSONObj, id) {
     }
 }
 
-login('0x76045a741daf7c761861c1123bf6d7ea7338aa15','0xD8A0B1144A27811ECF01841B323255B510AF23A7AD31B155E898F10BADAC017D')
-addTranscript({'ID': 123, 'Name': 'abc'})
+// login('0x76045a741daf7c761861c1123bf6d7ea7338aa15','0xD8A0B1144A27811ECF01841B323255B510AF23A7AD31B155E898F10BADAC017D')
+// addTranscript({'ID': 123, 'Name': 'abc'})
 // verifyTranscript({'ID': 123, 'Name': 'abc'})
