@@ -69,3 +69,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ## Issues resolved during development
 https://stackoverflow.com/questions/53656082/react-redux-firebase-error-using-firestoreconnect-typeerror-undefined-is-not-a
+https://stackoverflow.com/questions/55153873/warning-each-child-in-a-list-should-have-a-unique-key-prop

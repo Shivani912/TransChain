@@ -6,7 +6,7 @@ export const addTranscript = (transcript) =>{
             ...transcript,
             createdAt: new Date()
         }).then((docRef) => {
-            console.log("Transcript written with ID: ", docRef.id);
+            // console.log("Transcript written with ID: ", docRef.id);
             dispatch({type:'ADD_TRANSCRIPT',transcript:transcript});
         }).catch((err) => {
             dispatch({tyre:'ADD_TRANSCRIPT_ERROR',err});
