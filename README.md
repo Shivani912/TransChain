@@ -8,7 +8,7 @@
 
 Smart Contract Test Code Coverage -
 
-![](https://github.com/Shivani912/TransChain/blob/master/solidity/Code_coverage.JPG)
+![](https://github.com/Shivani912/TransChain/blob/master/assets/Code_coverage.JPG)
 
 ## Setup Instructions
 
@@ -49,3 +49,6 @@ You will also see any lint errors in the console.
   The smart contract is deployed on Ropsten testnet. However, as per the concept of this project, every intitute will have its own instance of the smart contract. Thus, the ownership of transcripts is well managed. Also, in this way, a single instance of the smart contract does not get overloaded with requests and data. 
   Link : https://ropsten.etherscan.io/address/0x76045a741daf7c761861c1123bf6d7ea7338aa15
   
+componentDidUpdate lifecycle method is used to display a notification on the bottom-right side of the /institute page whenever any Institute uploads a new transcript.
+
+![](https://github.com/Shivani912/TransChain/blob/master/assets/Component_Lifecycle_Notifications.JPG)
