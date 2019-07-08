@@ -4,8 +4,11 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import AddTranscript from './AddTranscript'
 import ShowTranscripts from './ShowTranscripts'
+import login from '../../blockchain/connectingBlockchain'
 
-
+const connectToBlockchain = (addr, pk) => {
+    login(addr, pk)
+}
 const InstituteDetails = (props) => {
     const {newInstitute} = props;
     const {instituteId} = props;
@@ -14,6 +17,7 @@ const InstituteDetails = (props) => {
     // console.log(newInstitute)
 
     if (newInstitute){
+        connectToBlockchain(newInstitute.ins_contract_addr,newInstitute.ins_pk)
         return(
             <div className="dashboard container">
                 <div className="row">
