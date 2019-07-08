@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addTranscript } from '../../store/actions/transcriptActions'
+import { addTranscriptToBlockchain } from '../../blockchain/connectingBlockchain'
 
 class AddTranscript extends Component {
     constructor(props){
@@ -26,7 +27,7 @@ class AddTranscript extends Component {
     handleSubmit(event) {
         event.preventDefault();
         this.props.addTranscript(this.state);
-
+        addTranscriptToBlockchain(this.state)
         // console.log(this.state);
         // alert('Transcript Added: \n transcriptID: '+ this.state.transcriptID + ' transcriptDate: '+ this.state.transcriptDate + 
         // '\n studentID: '+ this.state.studentID + ' studentName: '+ this.state.studentName +

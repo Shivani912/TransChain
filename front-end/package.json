@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ethers": "^4.0.32",
     "firebase": "^6.2.4",
     "jquery": "^3.4.1",
     "materialize-css": "^1.0.0",
