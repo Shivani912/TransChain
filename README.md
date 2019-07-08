@@ -7,6 +7,7 @@
 - Jaideep Singh 
 
 Smart Contract Test Code Coverage -
+
 ![](https://github.com/Shivani912/TransChain/blob/master/solidity/Code_coverage.JPG)
 
 ## Setup Instructions
@@ -19,9 +20,11 @@ Clone the repository
 
 Install dependencies
 
+### `cd front-end`
+
 ### `npm install`
 
-### `cd front-end`
+### `cd back-end`
 
 ### `npm install`
 
