@@ -6,6 +6,7 @@ const ShowTranscripts = ({transcripts, instituteId}) => {
     // console.log("ID ", instituteId)
     return(
         <div>
+        <h3>Transcripts Uploaded by us</h3>
             {transcripts && transcripts.map(transcript =>{
                 if(transcript.instituteId === instituteId){
                     return(

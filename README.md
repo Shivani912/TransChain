@@ -1,5 +1,14 @@
 # TransChain
 
+## DAPP1 Assignment Submission
+
+#### Developed by:-  
+- Shivani Joshi
+- Jaideep Singh 
+
+Smart Contract Test Code Coverage -
+![](https://github.com/Shivani912/TransChain/blob/master/solidity/Code_coverage.JPG)
+
 ## Setup Instructions
 
 Clone the repository
