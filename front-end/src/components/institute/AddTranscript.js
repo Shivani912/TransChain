@@ -37,7 +37,7 @@ class AddTranscript extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit} >
-                <h3>Transcript Details</h3>
+                <h3>Upload a Transcript</h3>
 
                 <p> Enter the Transcript Details as per the Standardised Format</p>
                
