@@ -8,6 +8,7 @@ import ShowTranscripts from './ShowTranscripts'
 
 const InstituteDetails = (props) => {
     const {newInstitute} = props;
+    const {instituteId} = props;
     const {transcripts} = props;
 
     // console.log(newInstitute)
@@ -18,7 +19,7 @@ const InstituteDetails = (props) => {
                 <div className="row">
                     <div className="card z-depth-0">
                         <div className="card-content grey-text text-darken-3">
-                            <span className="card-title">Institute Id - {newInstitute.ins_acc_address}</span>
+                            <span className="card-title">Institute Id - {instituteId}</span>
                             <span className="card-text">Institute Name - {newInstitute.ins_name} </span><br/>
                             <span className="card-text">Institute Address - {newInstitute.ins_acc_address} </span><br/>
                             <span className="card-text">Institute PK - {newInstitute.ins_pk} </span><br/>
@@ -28,10 +29,10 @@ const InstituteDetails = (props) => {
                 </div>
                 <div className="row">
                     <div className="col s12 m6">
-                        <AddTranscript/>
+                        <AddTranscript instituteId={instituteId} />
                     </div>
                     <div className="col s12 m6">
-                        <ShowTranscripts transcripts={transcripts} />
+                        <ShowTranscripts transcripts={transcripts} instituteId={instituteId} />
                     </div>
                 </div>
             </div>
@@ -54,6 +55,7 @@ const mapStateToProps = (state,ownProps)=>{
     // console.log(newInstitute)
     return{
         newInstitute: newInstitute,
+        instituteId: id,
         transcripts: state.firestore.ordered.transcripts
     }
 }

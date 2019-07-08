@@ -4,8 +4,6 @@ export const registration = (newInstitute) =>{
         const firestore = getFirestore();
         firestore.collection('institutions').add({
             ...newInstitute,
-            // instituteId: 12345,
-            // instituteAddress: 0x12345,
             createdAt: new Date()
         }).then((docRef) => {
             alert("Institute Added with ID: " + docRef.id);

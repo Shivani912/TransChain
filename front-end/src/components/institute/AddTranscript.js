@@ -5,13 +5,18 @@ import { addTranscript } from '../../store/actions/transcriptActions'
 class AddTranscript extends Component {
     constructor(props){
         super(props);
+        // console.log(props);
         this.state = {
             transcriptID: '', transcriptDate: '', studentID: '',
-            studentName: '', programName: '', marksDetails: ''
+            studentName: '', programName: '', marksDetails: '',
+            instituteId:''
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
+        // console.log(this.props.instituteId)
+        this.state.instituteId = this.props.instituteId;
     }
 
     handleChange(event) {
@@ -68,7 +73,6 @@ class AddTranscript extends Component {
                 <button className="btn waves-effect waves-light" type="submit" name="action">Add Transcript
                     <i className="material-icons right">send</i>
                 </button>
-
             </form>
         )
     }

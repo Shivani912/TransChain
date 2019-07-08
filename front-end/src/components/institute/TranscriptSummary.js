@@ -10,6 +10,7 @@ const TranscriptSummary = ({transcript}) => {
                 <span className="card-text">{transcript.studentName} </span>
                 <span className="card-text">{transcript.programName} </span>
                 <span className="card-text">{transcript.marksDetails} </span>
+                <span className="card-text">{transcript.instituteId} </span>
             </div>
         </div>
     )
