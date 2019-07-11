@@ -58,4 +58,6 @@ componentDidUpdate lifecycle method is used to display a notification on the bot
 
 ![](https://github.com/Shivani912/TransChain/blob/master/assets/Component_Lifecycle_Notifications.JPG)
 
-## What's comm=ing next?
+## What's coming next?
+
+![](https://github.com/Shivani912/TransChain/blob/master/next.png)
