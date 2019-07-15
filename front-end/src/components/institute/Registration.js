@@ -1,5 +1,5 @@
 import React, { Component } from 'react' 
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { registration } from '../../store/actions/registrationActions'
 
@@ -28,8 +28,9 @@ class Registration extends Component {
     render() {
         return (
             <div className="container">
+                <h4 className="teal-text text-lighten-3"> Want to join us ?</h4>
                 <form onSubmit={this.handleSubmit} >
-                    <h4 className="grey-text text-darken-3"> Want to join us ?</h4>
+                    
                     <div className="input-field">
                         <input id="ins_name" type="text" className="validate" onChange={this.handleChange}/>
                         <label htmlFor="ins_name">Institute Name</label>
@@ -45,13 +46,13 @@ class Registration extends Component {
                         <label htmlFor="ins_pk">Institute PK</label>
                     </div>
 
-                    {/* <Link to="/instituteDetails/:id"> */}
+                    <Link to="/instituteDetails/:id">
                         <div className="input-field">
                             <button className="btn waves-effect waves-light" type="submit" name="action">Register
                                 <i className="material-icons right">send</i>
                             </button>
                         </div>
-                    {/* </Link> */}
+                    </Link>
                 </form>
             </div>
             

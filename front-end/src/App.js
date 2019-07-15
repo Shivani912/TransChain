@@ -10,11 +10,14 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Navbar/>
-        <Switch>
-          <Route path='/institute' component={Institute} />
-          <Route path='/instituteDetails/:id' component={InstituteDetails} />
-          <Route path='/transcript/:id' component={TranscriptDetails} />
-        </Switch>
+        <div className="content">
+          <Switch>
+            <Route path='/institute' component={Institute} />
+            <Route path='/instituteDetails/:id' component={InstituteDetails} />
+            <Route path='/transcript/:id' component={TranscriptDetails} />
+          </Switch>
+        </div>
+        
       </div>
     </BrowserRouter>
   );

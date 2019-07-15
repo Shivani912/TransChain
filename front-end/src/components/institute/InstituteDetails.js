@@ -31,14 +31,14 @@ const InstituteDetails = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="row">
+                {/* <div className="row">
                     <div className="col s12 m6">
                         <AddTranscript instituteId={instituteId} />
                     </div>
                     <div className="col s12 m6">
                         <ShowTranscripts transcripts={transcripts} instituteId={instituteId} />
                     </div>
-                </div>
+                </div> */}
             </div>
         )
     }else{
@@ -72,21 +72,3 @@ export default compose(
     ])
 )(InstituteDetails)
 
-// export default class InstituteDetails extends Component {
-//     constructor(props) {
-//         super(props)
-//         console.log("InstituteDetails Props")
-//         console.log(props)
-//         this.state = {id: props.match.params.id}
-//     }
-//     render() {
-//         return (
-//             <div className="dashboard container">
-//                 <h2>Profile</h2>
-//                 <h4>ID: {this.state.id}</h4>
-//                 <h4>Name:</h4>
-//                 <h4>Address:</h4>
-//             </div>
-//         )
-//     }
-// }

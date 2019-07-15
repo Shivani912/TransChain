@@ -24,8 +24,9 @@ class ChooseInstitute extends Component
     render() {
         return (
             <div className="container">
+                <h4 className="teal-text text-lighten-3">Already a member?</h4>
                 <form onSubmit={this.handleSubmit}>
-                    <h4 className="grey-text text-darken-3">Already a member?</h4>
+                    
                     <div className="input-field">
                         <input id="ins_id" type="text" className="validate" onChange={this.handleChange}/>
                         <label htmlFor="ins_id">Institute ID</label>
