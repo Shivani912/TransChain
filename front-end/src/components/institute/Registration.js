@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { registration } from '../../store/actions/registrationActions'
+import { register } from '../../blockchain/callProxyb'
 
 class Registration extends Component {
     
@@ -20,7 +21,8 @@ class Registration extends Component {
     
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.registration(this.state);
+        register();
+        // this.props.registration(this.state);
         // console.log("State after registration")
         // console.log(this.state)
     }
@@ -46,13 +48,13 @@ class Registration extends Component {
                         <label htmlFor="ins_pk">Institute PK</label>
                     </div>
 
-                    <Link to="/instituteDetails/:id">
+                    {/* <Link to="/instituteDetails/:id"> */}
                         <div className="input-field">
                             <button className="btn waves-effect waves-light" type="submit" name="action">Register
                                 <i className="material-icons right">send</i>
                             </button>
                         </div>
-                    </Link>
+                    {/* </Link> */}
                 </form>
             </div>
             

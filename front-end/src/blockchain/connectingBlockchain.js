@@ -33,28 +33,28 @@ const login = (contractAddr, pk) => {
     console.log("logged in")
 }
 
-export const addTranscriptToBlockchain = async (JSONObj) => {
-    try{
-        let string = JSON.stringify(JSONObj)
-        let hex = ethers.utils.hashMessage(string)
-        // console.log(hex)
+// export const addTranscriptToBlockchain = async (JSONObj) => {
+//     try{
+//         let string = JSON.stringify(JSONObj)
+//         let hex = ethers.utils.hashMessage(string)
+//         // console.log(hex)
 
-        let hashedData = ethers.utils.keccak256(hex)
+//         let hashedData = ethers.utils.keccak256(hex)
 
-        let tx = await contractWithSigner.addTranscript(hashedData)
-        let txWait = await tx.wait()
-        let transcriptIDHex = txWait.logs[0].data.toString()
-        // console.log(parseInt(transcriptID))
-        let transcriptIDNum = parseInt(transcriptIDHex) - 1
-        // return transcriptIDNum
-        console.log(transcriptIDNum)
-    }
-    catch(err) {
-        // console.log(err)
-        return err.message
-    }
+//         let tx = await contractWithSigner.addTranscript(hashedData)
+//         let txWait = await tx.wait()
+//         let transcriptIDHex = txWait.logs[0].data.toString()
+//         // console.log(parseInt(transcriptID))
+//         let transcriptIDNum = parseInt(transcriptIDHex) - 1
+//         // return transcriptIDNum
+//         console.log(transcriptIDNum)
+//     }
+//     catch(err) {
+//         // console.log(err)
+//         return err.message
+//     }
     
-}
+// }
 
 // const verifyTranscript = async (JSONObj, id) => {
 //     try{

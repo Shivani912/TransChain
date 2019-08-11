@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addTranscript } from '../../store/actions/transcriptActions'
-import { addTranscriptToBlockchain } from '../../blockchain/connectingBlockchain'
+import { addTranscriptToBlockchain } from '../../blockchain/callProxyb'
 
 class AddTranscript extends Component {
     constructor(props){

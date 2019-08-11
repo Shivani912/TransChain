@@ -20,7 +20,7 @@ class Institute extends Component {
                     <div className="col s12 m6">
                         <Registration/>
                     </div>
-                    <div class="vr">&nbsp;</div>
+                    <div className="vr">&nbsp;</div>
                     <div className="col s12 m6">
                         <ChooseInstitute/>
                     </div>

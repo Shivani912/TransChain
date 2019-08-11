@@ -31,14 +31,16 @@ const InstituteDetails = (props) => {
                         </div>
                     </div>
                 </div>
-                {/* <div className="row">
+
+                <div className="row">
                     <div className="col s12 m6">
                         <AddTranscript instituteId={instituteId} />
                     </div>
                     <div className="col s12 m6">
                         <ShowTranscripts transcripts={transcripts} instituteId={instituteId} />
                     </div>
-                </div> */}
+                </div>
+
             </div>
         )
     }else{
