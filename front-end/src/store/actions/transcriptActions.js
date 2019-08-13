@@ -1,8 +1,8 @@
-export const addTranscript = (transcript) =>{
+export const addTranscript = (transcript, id) =>{
     return(dispatch, getState,{ getFirebase,getFirestore }) =>{
         // make async call to FireStore database
         const firestore = getFirestore();
-        firestore.collection('transcripts').add({
+        firestore.collection('transcripts').doc(id).set({
             ...transcript,
             createdAt: new Date()
         }).then((docRef) => {

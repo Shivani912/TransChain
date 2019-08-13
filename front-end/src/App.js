@@ -4,6 +4,7 @@ import Navbar from './components/navbar/Navbar'
 import Institute from './components/institute/Institute'
 import InstituteDetails from './components/institute/InstituteDetails'
 import TranscriptDetails from './components/institute/TranscriptDetails'
+import AddTranscript from './components/institute/AddTranscript'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path='/institute' component={Institute} />
             <Route path='/instituteDetails/:id' component={InstituteDetails} />
             <Route path='/transcript/:id' component={TranscriptDetails} />
+            <Route path='/addTranscript/:id' component={AddTranscript} />
           </Switch>
         </div>
         

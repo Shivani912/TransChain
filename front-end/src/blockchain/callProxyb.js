@@ -1,9 +1,4 @@
-// const web3 = require('web3');
 const ethers = require('ethers')
-// const Proxy = artifacts.require('Proxy')
-
-// var providers = ethers.providers;
-// var network = providers.networks.ropsten;
 
 const abi = [
 	{
@@ -313,43 +308,26 @@ const abi = [
 		"type": "function"
 	}
 ]
-// web3.providers.HttpProvider.prototype.sendAsync = web3.providers.HttpProvider.prototype.send;
-// var web3Provider = new providers.Web3Provider(web3.currentProvider, network);
-// const provider = ethers.getDefaultProvider('ropsten')
-// Web3.currentProvider.sendAsync = Web3.currentProvider.send
-// const web3Provider = this.web3.currentProvider
-//.providers.HttpProvider('https://ropsten.etherscan.io/');
-//(Web3.currentProvider)
 
-// console.log(web3)
-// const provider = new ethers.providers.Web3Provider(web3Provider, 'ropsten');
-// console.log(provider)
-// const provider = ethers.providers.getDefaultProvider('ropsten')
-// const signer  = provider.getSigner();
-// console.log(signer)
-
-//-----//
 let contractAddress = '0xdf080fb235da0ff42f3c91f14ac881e499bbb80f'
-// '0x845278eb31b275cf4003bf3c8f6aaf22d2661a9c'
-// let pk = 'D8A0B1144A27811ECF01841B323255B510AF23A7AD31B155E898F10BADAC017D'
-// let contract = new ethers.Contract(contractAddress, abi, signer)
-// let wallet = new ethers.Wallet(pk, provider)
-// let contractWithSigner = contract.connect(signer)
-
 
 export const register = async () => {
 	try{
 		await window.ethereum.enable()
-            const provider = new ethers.providers.Web3Provider(window.ethereum)
+			const provider = new ethers.providers.Web3Provider(window.ethereum)
+			let accAddr = provider._web3Provider.selectedAddress
 			const signer  = provider.getSigner();
+		// console.log(provider._web3Provider.selectedAddress)
 			let contract = new ethers.Contract(contractAddress, abi, signer)
 			
 		let tx1 = await contract.registerInstitute()
 		await tx1.wait()
 		
 		let tx2 = await contract.lastInstituteId()
+		let instituteId = parseInt(tx2._hex).toString()
 		
-		console.log(tx2._hex)
+		return ({instituteId, accAddr})
+		// console.log(tx2._hex)
 
 	}
 	catch(err) {
@@ -379,8 +357,9 @@ export const addTranscriptToBlockchain = async (JSONObj) => {
         
 		// console.log(txWait)
 		let tx2 = await contract.lastTranscriptId()
+		let transcriptId = parseInt(tx2._hex).toString()
 		
-		console.log(tx2._hex)
+		return transcriptId
 
     }
     catch(err) {
@@ -389,5 +368,28 @@ export const addTranscriptToBlockchain = async (JSONObj) => {
     }
     
 }
+
+export const getTranscriptById = async (id) => {
+	try{
+		await window.ethereum.enable()
+            const provider = new ethers.providers.Web3Provider(window.ethereum)
+			const signer  = provider.getSigner();
+			let contract = new ethers.Contract(contractAddress, abi, signer)
+
+			let tx = await contract.getTranscriptById(id)
+			// let txWait = await tx.wait()
+			let instituteId = parseInt(tx[0]._hex)
+			let transcriptHash = tx[1]
+			let sig = {v: tx[2], r: tx[3], s: tx[4]}
+			let timestamp = parseInt(tx[5]._hex)
+			// console.log()
+			return ({instituteId, transcriptHash, sig, timestamp})
+	}
+	catch(err) {
+		console.log(err.message)
+	}
+}
+
+// export const login = async 
 
 // register()

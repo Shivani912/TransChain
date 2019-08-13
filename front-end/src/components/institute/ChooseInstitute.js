@@ -17,7 +17,7 @@ class ChooseInstitute extends Component
 
     handleSubmit = (event) => {
         event.preventDefault()
-        console.log(this.state)
+        // console.log(this.state)
 
     }
 
@@ -28,7 +28,7 @@ class ChooseInstitute extends Component
                 <form onSubmit={this.handleSubmit}>
                     
                     <div className="input-field">
-                        <input id="ins_id" type="text" className="validate" onChange={this.handleChange}/>
+                        <input id="ins_id" type="text" className="validate" minLength="4" required onChange={this.handleChange}/>
                         <label htmlFor="ins_id">Institute ID</label>
                     </div>
 

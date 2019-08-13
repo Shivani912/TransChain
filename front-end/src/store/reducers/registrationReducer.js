@@ -8,7 +8,12 @@ const registrationReducer = (state = initState,action) => {
             return state;
         case 'ADD_INSTITUTE_ERROR':
             console.log("Error Adding Institute", action.err);
+            // return {
+            //     ...state,
+            //     fx: foo
+            // }
             return state;
+        
         default:
             return state;
     }
