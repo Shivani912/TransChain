@@ -1,3 +1,3 @@
 language: node_js
 script:
-  - ./solidity/test.js
+  test: waffle && mocha
