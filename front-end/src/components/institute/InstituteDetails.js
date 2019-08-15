@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Link } from 'react-router-dom'
-import AddTranscript from './AddTranscript'
+// import AddTranscript from './AddTranscript'
 import ShowTranscripts from './ShowTranscripts'
 // import login from '../../blockchain/callProxyb'
 
@@ -36,7 +36,10 @@ const InstituteDetails = (props) => {
                     </div>
                 
                     <div className="col s12 m6">
-                        <Link to={'/addTranscript/'+instituteId}>
+                        <Link to={{
+                            pathname: '/addTranscript/'+instituteId,
+                            state: {instituteId}
+                            }}>
                             <div className="input-field">
                                 <button className="btn waves-effect waves-light" type="submit" name="action">+ Transcript
                                 </button>

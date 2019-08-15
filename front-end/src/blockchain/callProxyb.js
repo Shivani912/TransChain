@@ -309,16 +309,16 @@ const abi = [
 	}
 ]
 
+let provider
+let signer
+let contract
+
 let contractAddress = '0xdf080fb235da0ff42f3c91f14ac881e499bbb80f'
 
 export const register = async () => {
 	try{
-		await window.ethereum.enable()
-			const provider = new ethers.providers.Web3Provider(window.ethereum)
-			let accAddr = provider._web3Provider.selectedAddress
-			const signer  = provider.getSigner();
-		// console.log(provider._web3Provider.selectedAddress)
-			let contract = new ethers.Contract(contractAddress, abi, signer)
+		await connectMetamask()
+		let accAddr = provider._web3Provider.selectedAddress
 			
 		let tx1 = await contract.registerInstitute()
 		await tx1.wait()
@@ -331,7 +331,9 @@ export const register = async () => {
 
 	}
 	catch(err) {
-		console.log(err.message)
+		if(err.code === -32603){
+			return "User rejected"
+		}
 	}
 	
 }
@@ -344,37 +346,40 @@ export const addTranscriptToBlockchain = async (JSONObj) => {
 
         let hashedData = ethers.utils.keccak256(hex)
 
-		await window.ethereum.enable()
-            const provider = new ethers.providers.Web3Provider(window.ethereum)
-			const signer  = provider.getSigner();
-			let contract = new ethers.Contract(contractAddress, abi, signer)
-
+		let response = await connectMetamask()
+		// console.log(response)
+		if(response === "OK") {
 			let flatsig = await signer.signMessage(hashedData)
 			let sig = ethers.utils.splitSignature(flatsig);
 
-        let tx = await contract.addTranscript(1, hashedData, sig.v, sig.r, sig.s)
-        await tx.wait()
-        
-		// console.log(txWait)
-		let tx2 = await contract.lastTranscriptId()
-		let transcriptId = parseInt(tx2._hex).toString()
+			let tx = await contract.addTranscript(1, hashedData, sig.v, sig.r, sig.s)
+			await tx.wait()
+			
+			let tx2 = await contract.lastTranscriptId()
+			let transcriptId = parseInt(tx2._hex).toString()
+			
+			return transcriptId
+		}
+		else if(response === "metamask not installed"){
+			return "metamask not installed"
+		}
+		else if(response === "metamask locked") {
+			return "metamask locked"
+		}
 		
-		return transcriptId
 
     }
     catch(err) {
-        console.log(err)
-        // return err.message
+		if(err.code === -32603){
+			return "User rejected"
+		}
     }
     
 }
 
 export const getTranscriptById = async (id) => {
 	try{
-		await window.ethereum.enable()
-            const provider = new ethers.providers.Web3Provider(window.ethereum)
-			const signer  = provider.getSigner();
-			let contract = new ethers.Contract(contractAddress, abi, signer)
+			await connectMetamask()
 
 			let tx = await contract.getTranscriptById(id)
 			// let txWait = await tx.wait()
@@ -386,10 +391,40 @@ export const getTranscriptById = async (id) => {
 			return ({instituteId, transcriptHash, sig, timestamp})
 	}
 	catch(err) {
-		console.log(err.message)
+		// console.log(err.message)
 	}
 }
 
-// export const login = async 
+async function connectMetamask() {
+	if (typeof window.ethereum !== 'undefined'){
+		// console.log(window.ethereum)
+		
+			await window.ethereum.enable()
+			provider = new ethers.providers.Web3Provider(window.ethereum)
+			if(!isLocked()){
+				signer  = provider.getSigner();
+				contract = new ethers.Contract(contractAddress, abi, signer)
+				return "OK"
+			}
+			else{
+				return "metamask locked"
+			}
+		
+	}
+	else {
+		return "metamask not installed"
+	}
+	
+}
 
-// register()
+function isLocked() {
+	
+	   if (provider._web3Provider.selectedAddress !== undefined) {
+		  return false
+	   }
+
+	   else {
+		  return true
+	   }
+	
+ }

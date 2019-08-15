@@ -25,8 +25,10 @@ class Registration extends Component {
             loading: true
         });
         let ins = await register();
+        let insId = this.state.ins_name.substring(0,3) + ins.instituteId
+        // console.log(indId)
         this.setState({
-            ins_id: ins.instituteId,
+            ins_id: insId,
             ins_acc_address: ins.accAddr
         });
         let obj = {

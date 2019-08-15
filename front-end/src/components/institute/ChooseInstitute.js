@@ -24,7 +24,7 @@ class ChooseInstitute extends Component
     render() {
         return (
             <div className="container">
-                <h4 className="teal-text text-lighten-3">Already a member?</h4>
+                <h4 className="teal-text text-lighten-3">Search an Institute</h4>
                 <form onSubmit={this.handleSubmit}>
                     
                     <div className="input-field">
@@ -39,7 +39,7 @@ class ChooseInstitute extends Component
 
                     <Link to={'/instituteDetails/' + this.state.ins_id}>
                         <div className="input-field">
-                            <button className="btn waves-effect waves-light" type="submit" name="action">Log In
+                            <button className="btn waves-effect waves-light" type="submit" name="action">Go
                                 <i className="material-icons right">send</i>
                             </button>
                         </div>
