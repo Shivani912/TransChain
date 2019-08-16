@@ -44,4 +44,8 @@ describe('Testing smart contract', () => {
         await expect(contract.getInstituteById(5)).to.be.reverted;
     });
 
+    it('gets transcript by id', async() => {
+        await expect(contract.getTranscriptById(1)).to.be.reverted;
+    });
+
 })
