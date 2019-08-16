@@ -1,4 +1,8 @@
 language: node_js
-script:
+
+before_script:
   - cd solidity
+  - npm install
+  
+script:
   - mocha
