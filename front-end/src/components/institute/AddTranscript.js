@@ -27,6 +27,11 @@ class AddTranscript extends Component {
             courseCode: '',
             courseGrade: '',     
             courseTerm: '', 
+            signature: {
+                v: '',
+                r: '',
+                s: ''
+            },
             loading: false,
             error: 0                                                      
         };
@@ -55,10 +60,10 @@ class AddTranscript extends Component {
             loading: true
         })
 
-        let obj = _.omit(this.state, ['loading','error'])
-        let id = await addTranscriptToBlockchain(obj)
-        // console.log(id)
-        switch (id) {
+        let obj = _.omit(this.state, ['loading','error','signature'])
+        let data = await addTranscriptToBlockchain(obj)
+        console.log(data)
+        switch (data.id) {
             case "User rejected" :
                     
                     this.setState({
@@ -78,26 +83,22 @@ class AddTranscript extends Component {
                     })
                     break;
             default:
-                    this.setState({transcriptId: this.state.instituteId + 'T' + id})
+                    this.setState({
+                        transcriptId: this.state.instituteId + 'T' + data.id,
+                        signature: {
+                            v: data.sig.v,
+                            r: data.sig.r,
+                            s: data.sig.s
+                        }
+                    })
         
                     this.props.addTranscript(this.state)
                     this.setState({
                         error: "Successful",
                         loading: false
                     })
-                    // console.log(this.state.error)
                 
         }
-        // if(id === "User rejected") {
-        //     this.setState({
-        //         error: "User rejected"
-        //     })
-        // }
-        // else{
-        //     this.setState({transcriptId: this.state.instituteId + 'T' + id})
-        
-        //     this.props.addTranscript(this.state);
-        // }
         
     }
 
@@ -132,10 +133,15 @@ class AddTranscript extends Component {
 
         if(this.state.error === "Successful") {
             let obj = _.omit(this.state, ['transcriptId', 'loading', 'error'])
+            let instituteAddress = this.props.location.state.ins_addr
             return (
                 <div className="container">
                     <h4 className="teal-text text-lighten-3"> Transcript added!</h4>
-                    <Link to={'/transcript/' + this.state.transcriptId} key={this.state.transcriptId} >
+                    <Link to={{
+                        pathname:'/transcript/' + this.state.transcriptId,
+                        state: {instituteAddress}
+                     }} 
+                     key={this.state.transcriptId} >
                         <TranscriptSummary transcript={obj} key={this.state.transcriptId} />
                     </Link>
                 </div>

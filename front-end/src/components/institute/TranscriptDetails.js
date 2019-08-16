@@ -2,14 +2,42 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { verifyTranscriptOnBlockchain } from '../../blockchain/callProxyb'
 
 
 const TranscriptDetails = (props) => {
     const {transcript} = props;
-    // console.log(transcript)
+
+    this.state = {
+        result: ''
+    }
+    const verifyTranscript = () => {
+        let obj = {
+            studentName: transcript.studentName,
+            studentId: transcript.studentId,
+            credential: transcript.credential,
+            program: transcript.program,
+            major: transcript.major,
+            minReqProgramGPA: transcript.minReqProgramGPA,
+            actualProgramGPA: transcript.actualProgramGPA,
+            collegeName: transcript.collegeName,
+            instituteId: transcript.instituteId,
+            entryTerm: transcript.entryTerm,
+            endTerm: transcript.endTerm,
+            courseName: transcript.courseName,
+            courseCode: transcript.courseCode,
+            courseGrade: transcript.courseGrade,     
+            courseTerm: transcript.courseTerm
+        }
+
+        let result = verifyTranscriptOnBlockchain(obj, props.location.state.instituteAddress, transcript.signature)
+        this.setState({
+            result: result
+        })
+    }
 
     if (transcript){
-        console.log(transcript.createdAt.toDate())
+        // console.log(transcript.createdAt.toDate())
         return(
             <div className="container section">
                 {/* <h5 className="teal-text text-lighten-3">Transcript </h5> */}
@@ -39,9 +67,12 @@ const TranscriptDetails = (props) => {
                     </div>
                 </div>
 
-                {/* <button>
-
-                </button> */}
+                <p align="right">
+                    <label>{this.state.result}</label>
+                    <button className="btn waves-effect waves-light" onClick={verifyTranscript}>
+                        Verify
+                    </button>
+                </p>
             </div>
         )
     }else{
@@ -52,6 +83,8 @@ const TranscriptDetails = (props) => {
         )
     }
 }
+
+
 
 const mapStateToProps = (state,ownProps)=>{
     // console.log(ownProps);

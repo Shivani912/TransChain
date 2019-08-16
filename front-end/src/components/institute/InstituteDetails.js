@@ -7,9 +7,6 @@ import { Link } from 'react-router-dom'
 import ShowTranscripts from './ShowTranscripts'
 // import login from '../../blockchain/callProxyb'
 
-const connectToBlockchain = (addr, pk) => {
-    // login(addr, pk)
-}
 const InstituteDetails = (props) => {
     const {newInstitute} = props;
     const {instituteId} = props;
@@ -18,7 +15,7 @@ const InstituteDetails = (props) => {
     // console.log(newInstitute)
 
     if (newInstitute){
-        connectToBlockchain(newInstitute.ins_contract_addr,newInstitute.ins_pk)
+        const ins_addr = newInstitute.ins_acc_address
         return(
             <div className="dashboard container">
 
@@ -38,7 +35,7 @@ const InstituteDetails = (props) => {
                     <div className="col s12 m6">
                         <Link to={{
                             pathname: '/addTranscript/'+instituteId,
-                            state: {instituteId}
+                            state: {instituteId, ins_addr}
                             }}>
                             <div className="input-field">
                                 <button className="btn waves-effect waves-light" type="submit" name="action">+ Transcript
@@ -47,7 +44,7 @@ const InstituteDetails = (props) => {
                         </Link>
                     </div>
 
-                    <ShowTranscripts transcripts={transcripts} instituteId={instituteId} />
+                    <ShowTranscripts transcripts={transcripts} instituteId={instituteId} instituteAddress={newInstitute.ins_acc_address}/>
                 </div>
 
                 {/* </div> */}

@@ -2,7 +2,7 @@ import React from 'react'
 import TranscriptSummary from './TranscriptSummary'
 import { Link } from 'react-router-dom'
 
-const ShowTranscripts = ({transcripts, instituteId}) => {
+const ShowTranscripts = ({transcripts, instituteId, instituteAddress}) => {
 
     return(
         <div>
@@ -11,8 +11,12 @@ const ShowTranscripts = ({transcripts, instituteId}) => {
                 {transcripts && transcripts.map(transcript =>{
                     if(transcript.instituteId === instituteId){
                         return(
-                        <Link to={'/transcript/' + transcript.id} key={transcript.id} >
-                        <TranscriptSummary transcript={transcript} key={transcript.id} />
+                        <Link to={{
+                            pathname:'/transcript/' + transcript.id,  
+                            state: {instituteAddress}
+                        }}
+                        key= {transcript.id}>
+                        <TranscriptSummary transcript={transcript} key={transcript.id}/>
                         </Link>
                     )
                     }

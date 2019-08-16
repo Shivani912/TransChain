@@ -338,27 +338,27 @@ export const register = async () => {
 	
 }
 
-export const addTranscriptToBlockchain = async (JSONObj) => {
+export const addTranscriptToBlockchain = async (Obj) => {
     try{
-        let string = JSON.stringify(JSONObj)
-        let hex = ethers.utils.hashMessage(string)
-        // console.log(hex)
-
-        let hashedData = ethers.utils.keccak256(hex)
+        let hashedData = hashData(Obj)
 
 		let response = await connectMetamask()
-		// console.log(response)
+	
 		if(response === "OK") {
-			let flatsig = await signer.signMessage(hashedData)
-			let sig = ethers.utils.splitSignature(flatsig);
-
+			
+			let sig = await sign(hashedData)
+			console.log(hashedData, sig.v, sig.r, sig.s)
 			let tx = await contract.addTranscript(1, hashedData, sig.v, sig.r, sig.s)
 			await tx.wait()
 			
 			let tx2 = await contract.lastTranscriptId()
 			let transcriptId = parseInt(tx2._hex).toString()
-			
-			return transcriptId
+			// console.log(transcriptId)
+			let data = {
+				id: transcriptId,
+				sig: sig
+			}
+			return data
 		}
 		else if(response === "metamask not installed"){
 			return "metamask not installed"
@@ -375,6 +375,49 @@ export const addTranscriptToBlockchain = async (JSONObj) => {
 		}
     }
     
+}
+
+async function sign(hashedData) {
+	let flatsig = await signer.signMessage(hashedData)
+	let sig = ethers.utils.splitSignature(flatsig);
+	return sig
+}
+
+function hashData(Obj) {
+	let string = JSON.stringify(Obj)
+	let hex = ethers.utils.hashMessage(string)
+
+	let hashedData = ethers.utils.keccak256(hex)
+	return hashedData
+}
+
+export const verifyTranscriptOnBlockchain = async (Obj, instituteAddress, sig) => {
+	try{
+        let hashedData = hashData(Obj)
+
+		let response = await connectMetamask()
+	
+		if(response === "OK") {
+			let result = await contract.isTranscriptAuthentic(hashedData, instituteAddress, sig.v, sig.r, sig.s)
+			// await tx.wait()
+			// console.log(tx)
+			
+			return result
+		}
+		else if(response === "metamask not installed"){
+			return "metamask not installed"
+		}
+		else if(response === "metamask locked") {
+			return "metamask locked"
+		}
+		
+
+    }
+    catch(err) {
+		if(err.code === -32603){
+			return "User rejected"
+		}
+    }
 }
 
 export const getTranscriptById = async (id) => {
