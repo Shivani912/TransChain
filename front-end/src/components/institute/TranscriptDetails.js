@@ -1,49 +1,37 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { verifyTranscriptOnBlockchain } from '../../blockchain/callProxyb'
 
 
-const TranscriptDetails = (props) => {
-    const {transcript} = props;
+class TranscriptDetails extends Component {
+    constructor(props) {
+        super(props);
 
-    this.state = {
-        result: ''
-    }
-    const verifyTranscript = () => {
-        let obj = {
-            studentName: transcript.studentName,
-            studentId: transcript.studentId,
-            credential: transcript.credential,
-            program: transcript.program,
-            major: transcript.major,
-            minReqProgramGPA: transcript.minReqProgramGPA,
-            actualProgramGPA: transcript.actualProgramGPA,
-            collegeName: transcript.collegeName,
-            instituteId: transcript.instituteId,
-            entryTerm: transcript.entryTerm,
-            endTerm: transcript.endTerm,
-            courseName: transcript.courseName,
-            courseCode: transcript.courseCode,
-            courseGrade: transcript.courseGrade,     
-            courseTerm: transcript.courseTerm
+        // const {transcript} = props;
+
+        this.state = {
+            result: '',
+            transcript: ''
         }
 
-        let result = verifyTranscriptOnBlockchain(obj, props.location.state.instituteAddress, transcript.signature)
-        this.setState({
-            result: result
-        })
+        this.state.transcript = this.props.transcript
+        // console.log(this.props)
     }
 
-    if (transcript){
+    render(){
+    
+    
+    if (this.state.transcript){
+        let transcript = this.state.transcript
         // console.log(transcript.createdAt.toDate())
         return(
             <div className="container section">
                 {/* <h5 className="teal-text text-lighten-3">Transcript </h5> */}
                 <div className="card teal lighten-3" >
                     <div className="card-content white-text">
-                        <span className="card-title">ID - {props.match.params.id}</span>
+                        <span className="card-title">ID - {this.props.match.params.id}</span>
 
                         <span className="card-text">Student Name - {transcript.studentName} </span><br/>
                         <span className="card-text">Student ID - {transcript.studentId} </span><br/>
@@ -83,7 +71,34 @@ const TranscriptDetails = (props) => {
         )
     }
 }
+}
 
+const verifyTranscript = () => {
+    let transcript = this.state.transcript
+
+    let obj = {
+        studentName: transcript.studentName,
+        studentId: transcript.studentId,
+        credential: transcript.credential,
+        program: transcript.program,
+        major: transcript.major,
+        minReqProgramGPA: transcript.minReqProgramGPA,
+        actualProgramGPA: transcript.actualProgramGPA,
+        collegeName: transcript.collegeName,
+        instituteId: transcript.instituteId,
+        entryTerm: transcript.entryTerm,
+        endTerm: transcript.endTerm,
+        courseName: transcript.courseName,
+        courseCode: transcript.courseCode,
+        courseGrade: transcript.courseGrade,     
+        courseTerm: transcript.courseTerm
+    }
+
+    let result = verifyTranscriptOnBlockchain(obj, this.props.location.state.instituteAddress, transcript.signature)
+    this.setState({
+        result: result
+    })
+}
 
 
 const mapStateToProps = (state,ownProps)=>{
