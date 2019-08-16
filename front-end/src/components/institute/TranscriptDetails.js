@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -8,33 +8,71 @@ import { verifyTranscriptOnBlockchain } from '../../blockchain/callProxyb'
 const TranscriptDetails = (props) => {
     const {transcript} = props;
 
-    this.state = {
-        result: ''
-    }
-    const verifyTranscript = () => {
-        let obj = {
-            studentName: transcript.studentName,
-            studentId: transcript.studentId,
-            credential: transcript.credential,
-            program: transcript.program,
-            major: transcript.major,
-            minReqProgramGPA: transcript.minReqProgramGPA,
-            actualProgramGPA: transcript.actualProgramGPA,
-            collegeName: transcript.collegeName,
-            instituteId: transcript.instituteId,
-            entryTerm: transcript.entryTerm,
-            endTerm: transcript.endTerm,
-            courseName: transcript.courseName,
-            courseCode: transcript.courseCode,
-            courseGrade: transcript.courseGrade,     
-            courseTerm: transcript.courseTerm
+    class Result extends Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                result: ''
+            }
+        }
+        
+        verifyTranscript = async () => {
+            let obj = {
+                studentName: transcript.studentName,
+                studentId: transcript.studentId,
+                credential: transcript.credential,
+                program: transcript.program,
+                major: transcript.major,
+                minReqProgramGPA: transcript.minReqProgramGPA,
+                actualProgramGPA: transcript.actualProgramGPA,
+                collegeName: transcript.collegeName,
+                instituteId: transcript.instituteId,
+                entryTerm: transcript.entryTerm,
+                endTerm: transcript.endTerm,
+                courseName: transcript.courseName,
+                courseCode: transcript.courseCode,
+                courseGrade: transcript.courseGrade,     
+                courseTerm: transcript.courseTerm
+            }
+    
+            let result = await verifyTranscriptOnBlockchain(obj, props.location.state.instituteAddress, transcript.signature)
+            this.setState({
+                result: result
+            })
+                        console.log(this.state.result)
+
         }
 
-        let result = verifyTranscriptOnBlockchain(obj, props.location.state.instituteAddress, transcript.signature)
-        this.setState({
-            result: result
-        })
+        render() {
+            if(this.state.result === true){
+                return(
+                    <h5 align="center" className="green darken-3 white-text">
+                            VERIFIED
+                    </h5>
+                )
+            }
+            if(this.state.result === false){
+                return(
+                    <h5 align="center" className="red darken-3 white-text">
+                            COMPROMISED
+                    </h5>
+                )
+            }
+            else{
+                return(
+                    <p align="right">
+                            {/* <label>{this.state.result}</label> */}
+                            <button className="btn waves-effect waves-light" onClick={this.verifyTranscript}>
+                                Verify
+                            </button>
+                    </p>
+                )
+            }
+        }
     }
+    
+    
 
     if (transcript){
         // console.log(transcript.createdAt.toDate())
@@ -67,12 +105,7 @@ const TranscriptDetails = (props) => {
                     </div>
                 </div>
 
-                <p align="right">
-                    <label>{this.state.result}</label>
-                    <button className="btn waves-effect waves-light" onClick={verifyTranscript}>
-                        Verify
-                    </button>
-                </p>
+                <Result></Result>
             </div>
         )
     }else{
