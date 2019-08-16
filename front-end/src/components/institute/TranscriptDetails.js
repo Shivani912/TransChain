@@ -9,19 +9,39 @@ const TranscriptDetails = (props) => {
     // console.log(transcript)
 
     if (transcript){
+        console.log(transcript.createdAt.toDate())
         return(
             <div className="container section">
-                <div className="card z-depth-0">
-                    <div className="card-content grey-text text-darken-3">
-                        <span className="card-title">Transcript Id - {transcript.transcriptID}</span>
-                        <span className="card-text">Transcript Date - {transcript.transcriptDate} </span><br/>
-                        <span className="card-text">Student Id - {transcript.studentID} </span><br/>
+                {/* <h5 className="teal-text text-lighten-3">Transcript </h5> */}
+                <div className="card teal lighten-3" >
+                    <div className="card-content white-text">
+                        <span className="card-title">ID - {props.match.params.id}</span>
+
                         <span className="card-text">Student Name - {transcript.studentName} </span><br/>
-                        <span className="card-text">Program Name - {transcript.programName} </span><br/>
-                        <span className="card-text">Details of Marks - {transcript.marksDetails} </span><br/>
-                        <span className="card-text">Certified by Institution - {transcript.instituteId} </span>
+                        <span className="card-text">Student ID - {transcript.studentId} </span><br/>
+                        <span className="card-text">College - {transcript.collegeName} </span><br/>
+
+                        <span className="card-text">Credential - {transcript.credential} </span><br/>
+                        <span className="card-text">Program - {transcript.program} </span><br/>
+                        <span className="card-text">Major - {transcript.major} </span><br/>
+                        <span className="card-text">Minimum Required Program GPA - {transcript.minReqProgramGPA} </span><br/>
+                        <span className="card-text">Actual Program GPA - {transcript.actualProgramGPA} </span><br/>
+                        <span className="card-text">Entry Term - {transcript.entryTerm} </span><br/>
+                        <span className="card-text">End Term - {transcript.endTerm} </span><br/>
+
+                        <span className="card-text">Course Name - {transcript.courseName} </span><br/>
+                        <span className="card-text">Course Code - {transcript.courseCode} </span><br/>
+                        <span className="card-text">Course Grade - {transcript.courseGrade} </span><br/>
+                        <span className="card-text">Course Term - {transcript.courseTerm} </span><br/>
+
+                        <span className="card-text">Date Added - {transcript.createdAt.toDate().toString()} </span><br/>
+                        
                     </div>
                 </div>
+
+                {/* <button>
+
+                </button> */}
             </div>
         )
     }else{

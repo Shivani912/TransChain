@@ -17,17 +17,18 @@ class ChooseInstitute extends Component
 
     handleSubmit = (event) => {
         event.preventDefault()
-        console.log(this.state)
+        // console.log(this.state)
 
     }
 
     render() {
         return (
             <div className="container">
+                <h4 className="teal-text text-lighten-3">Search an Institute</h4>
                 <form onSubmit={this.handleSubmit}>
-                    <h4 className="grey-text text-darken-3">Already a member?</h4>
+                    
                     <div className="input-field">
-                        <input id="ins_id" type="text" className="validate" onChange={this.handleChange}/>
+                        <input id="ins_id" type="text" className="validate" minLength="4" required onChange={this.handleChange}/>
                         <label htmlFor="ins_id">Institute ID</label>
                     </div>
 
@@ -38,7 +39,7 @@ class ChooseInstitute extends Component
 
                     <Link to={'/instituteDetails/' + this.state.ins_id}>
                         <div className="input-field">
-                            <button className="btn waves-effect waves-light" type="submit" name="action">Log In
+                            <button className="btn waves-effect waves-light" type="submit" name="action">Go
                                 <i className="material-icons right">send</i>
                             </button>
                         </div>

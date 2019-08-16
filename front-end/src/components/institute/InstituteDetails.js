@@ -2,12 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import AddTranscript from './AddTranscript'
+import { Link } from 'react-router-dom'
+// import AddTranscript from './AddTranscript'
 import ShowTranscripts from './ShowTranscripts'
-import login from '../../blockchain/connectingBlockchain'
+// import login from '../../blockchain/callProxyb'
 
 const connectToBlockchain = (addr, pk) => {
-    login(addr, pk)
+    // login(addr, pk)
 }
 const InstituteDetails = (props) => {
     const {newInstitute} = props;
@@ -20,25 +21,43 @@ const InstituteDetails = (props) => {
         connectToBlockchain(newInstitute.ins_contract_addr,newInstitute.ins_pk)
         return(
             <div className="dashboard container">
+
                 <div className="row">
-                    <div className="card z-depth-0">
-                        <div className="card-content grey-text text-darken-3">
-                            <span className="card-title">Institute Id - {instituteId}</span>
-                            <span className="card-text">Institute Name - {newInstitute.ins_name} </span><br/>
-                            <span className="card-text">Institute Address - {newInstitute.ins_acc_address} </span><br/>
-                            <span className="card-text">Institute PK - {newInstitute.ins_pk} </span><br/>
-                            <span className="card-text">Institute SmartContract Address - {newInstitute.ins_contract_addr} </span><br/>
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
+                {/* <h4 className="teal-text text-lighten-3">Profile</h4> */}
                     <div className="col s12 m6">
-                        <AddTranscript instituteId={instituteId} />
+                    
+                        {/* <div className="card z-depth-0"> */}
+                            <div className="card-content teal-text text-lighten-3">
+                                <span className="card-text">Logged In ID - {instituteId}</span><br/>
+                                <span className="card-text">Name - {newInstitute.ins_name} </span><br/>
+                                <span className="card-text">Ethereum Address - {newInstitute.ins_acc_address} </span><br/>
+                            </div>
+                        {/* </div> */}
                     </div>
+                
                     <div className="col s12 m6">
-                        <ShowTranscripts transcripts={transcripts} instituteId={instituteId} />
+                        <Link to={{
+                            pathname: '/addTranscript/'+instituteId,
+                            state: {instituteId}
+                            }}>
+                            <div className="input-field">
+                                <button className="btn waves-effect waves-light" type="submit" name="action">+ Transcript
+                                </button>
+                            </div>
+                        </Link>
                     </div>
+
+                    <ShowTranscripts transcripts={transcripts} instituteId={instituteId} />
                 </div>
+
+                {/* </div> */}
+
+                {/* <div className="row">
+                    {/* <div className="col s12 m6"> */}
+                        {/* <AddTranscript instituteId={instituteId} /> */}
+                    {/* </div> */}
+                {/* </div> */} */}
+
             </div>
         )
     }else{
@@ -72,21 +91,3 @@ export default compose(
     ])
 )(InstituteDetails)
 
-// export default class InstituteDetails extends Component {
-//     constructor(props) {
-//         super(props)
-//         console.log("InstituteDetails Props")
-//         console.log(props)
-//         this.state = {id: props.match.params.id}
-//     }
-//     render() {
-//         return (
-//             <div className="dashboard container">
-//                 <h2>Profile</h2>
-//                 <h4>ID: {this.state.id}</h4>
-//                 <h4>Name:</h4>
-//                 <h4>Address:</h4>
-//             </div>
-//         )
-//     }
-// }
