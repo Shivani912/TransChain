@@ -53,8 +53,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
   - Each transcript can be verified by clicking the 'Verify' button. This will hash the transcript data and call the verifyTranscript function on smart contract which will return a bool value depending on the result.
   
 ## Testing
-
-  For testing the smart contract follow the steps below:
+ 
+  I have used Waffle for testing the smart contract. Please follow the steps below to run it locally:
   
   - go into the /solidity folder
   - npm install
