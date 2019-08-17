@@ -14,19 +14,19 @@ EtherScan Link : https://ropsten.etherscan.io/address/0xdf080fb235da0ff42f3c91f1
 
 Clone the repository
 
-  `git clone https://github.com/Shivani912/TransKrypt.git`
+ -  `git clone https://github.com/Shivani912/TransKrypt.git`
 
-  `cd TransKrypt`
+ -  `cd TransKrypt`
 
 Install dependencies
 
-  `cd front-end`
+ -  `cd front-end`
 
-  `npm install`
+ -  `npm install`
 
 Start the app
 
-  `npm start`
+ -  `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
