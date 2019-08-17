@@ -14,44 +14,50 @@ EtherScan Link : https://ropsten.etherscan.io/address/0xdf080fb235da0ff42f3c91f1
 
 Clone the repository
 
-### `git clone https://github.com/Shivani912/TransChain.git`
+  `git clone https://github.com/Shivani912/TransKrypt.git`
 
-### `cd TransChain`
+  `cd TransKrypt`
 
 Install dependencies
 
-### `cd front-end`
+  `cd front-end`
 
-### `npm install`
-
-### `cd back-end`
-
-### `npm install`
+  `npm install`
 
 Start the app
 
-### `npm start`
+  `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
 ## About the project
 
   TransKrypt is a blockchain application that facilitates an educational institution to deliver student transcripts on blockchain, not just to make it easily accessible by students, but also to keep it safe and secure as everything on a blockchain is immutable.
-
-  For the first stage, I have built a smart contract that let's the owner of the contract (in this case, an instituition) add transcript hashes to the blockchain. The institutes can login/register using the web app and add transcrypts. 
   
-  We have used Firebase for database. The reason for using a database is that not everything needs to be stored on blockchain. Also transactions on blockchain can be expensive. Keeping that in mind, we have only the transcript hashes and and owner address stored on it. All other information including the transcript itself is stored on the database. Since the transcript hash is always immutable, verifiers can check the authenticity of a transcript by hashing it and comparing it with its hash on blockchain. Also having less important data stored on database makes the dapp faster.
+  We have used Firebase for database. The reason for using a database is that not everything needs to be stored on blockchain. Also transactions on blockchain can be expensive. Keeping that in mind, only the transcript hashes, owner address, signature and such necessary data that is needed fort he verification purpose is stored on it. All other information including the transcript itself is stored on the database. Since the transcript hash is always immutable, verifiers can check the authenticity of a transcript by hashing it and comparing it with its hash on blockchain. Also having less important data stored on database makes the DApp faster.
   
-  The smart contract is deployed on Ropsten testnet. However, as per the concept of this project, every intitute will have its own instance of the smart contract. Thus, the ownership of transcripts is well managed. Also, in this way, a single instance of the smart contract does not get overloaded with requests and data. 
+  The smart contract is deployed on Ropsten testnet. It can be found under the solidity/contracts folder. Main.sol is the entry point and it inherits the other contracts. Critical operations like institute registration, adding transcripts and verifying transcripts are handled on-chain.  
   
-componentDidUpdate lifecycle method is used to display a notification on the bottom-right side of the /institute page whenever any Institute uploads a new transcript.
+## Using the DApp
 
-![](https://github.com/Shivani912/TransChain/blob/master/assets/Component_Lifecycle_Notifications.JPG)
+  - You will need to have the Metamask extension on your browser to be able to access the DApp as all the on-chain operations are handled using metamask. 
+  
+  - You may start by registering yourself as an institute. Once you have been registered, use your institute ID to land on your profile page. 
+  
+  - Clicking on the '+ Transcript' button will take you to a form to add a new transcript. Adding the transcript will require you to sign the data and then pay some Eth to make a transaction on blockchain.
+  
+  - Once the transcript has been added, you will see a summary of it and clicking on it will display all the details.
+  
+  - Each transcript can be verified by clicking the 'Verify' button. This will hash the transcript data and call the verifyTranscript function on smart contract which will return a bool value depending on the result.
+  
+## Testing
 
-## What's coming next?
-
-![](https://github.com/Shivani912/TransChain/blob/master/next.png)
+  For testing the smart contract follow the steps below:
+  
+  - go into the /solidity folder
+  - npm install
+  - npm test
+  
+  The tests that require checking of a timestamp might fail sometimes as there can be a very small time difference between consecutive operations. Please re-run the test in case that happens.
